@@ -26,7 +26,7 @@ jobs:
     - id: 'auth'
       uses: 'google-github-actions/auth@v0'
       with:
-        credentials_json: '${{ secrets.SA_KEY }}'
+        credentials_json: '${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}'
 
     - name: Set up Cloud SDK
       uses: google-github-actions/setup-gcloud@v0
@@ -36,8 +36,8 @@ jobs:
     - name: Add secrets to files
       run: |
         mkdir config
-        echo "${{ secrets.GCP_CREDENTIALS_QUOTES_ESCAPED }}" > config/google_creds.json
-        echo "${{ secrets.CONFIG }}" > config/config.ini
+        echo "${{ secrets.GCP_SERVICE_ACCOUNT_KEY_QUOTES_ESCAPED }}" > creds/gcp-service-account-key.json
+        echo "${{ secrets.CONFIG }}" > config.ini
 
     - name: Build
       run: docker build --tag "$REGION-docker.pkg.dev/$PROJECT_ID/$SERVICE_NAME/$SERVICE_NAME:$GITHUB_SHA" .

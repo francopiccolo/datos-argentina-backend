@@ -15,3 +15,6 @@ gcloud iam service-accounts add-iam-policy-binding \
   310594583464-compute@developer.gserviceaccount.com \
   --member="serviceAccount:datos-argentina-backend@economia-399616.iam.gserviceaccount.com" \
   --role="roles/iam.serviceAccountUser"
+gcloud projects add-iam-policy-binding economia-399616 \
+    --member="serviceAccount:datos-argentina-backend@economia-399616.iam.gserviceaccount.com" \
+    --role="roles/bigquery.admin"
